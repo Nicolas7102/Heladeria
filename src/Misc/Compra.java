@@ -18,4 +18,12 @@ public class Compra {
     public void quitarHelado(Helado helado){ //TODO PROBAR SI ANDA
         this.helados.remove(helado);
     }
+
+    public int calcularPrecio(){
+        int total = 0;
+        for (int i=0; i<this.helados.size(); i++){
+            total += this.helados.get(i).calcularPrecio();
+        }
+        return total;
+    }
 }

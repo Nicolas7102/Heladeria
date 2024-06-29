@@ -16,20 +16,15 @@ public class Cucurucho extends Helado{
 
     @Override
     public void agregarPorcion(Porcion porcion) {
-        try {
-            if (porcion.getPeso() > pesoMaximo || porcion.getPeso() < 0) {
-                System.out.println("Peso del sabor fuera de rango");
-            } else if (this.calcularPeso() > pesoMaximo) {
-                System.out.println("Ya se completó el cucurucho");
-            } else if (this.contieneSabor(porcion)) { //Si el sabor ya existe lo acumulo como una sola porcion
-                int i = indexBySabor(porcion);
-                this.porciones.get(i).setGms(this.porciones.get(i).getPeso() + porcion.getPeso());
-            } else {
-                this.porciones.add(porcion);
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error!!1");
+        if (porcion.getPeso() > pesoMaximo || porcion.getPeso() < 0) {
+            System.out.println("Peso del sabor fuera de rango");
+        } else if (this.calcularPeso() > pesoMaximo) {
+            System.out.println("Ya se completó el cucurucho");
+        } else if (this.contieneSabor(porcion)) {
+            int i = indexBySabor(porcion);
+            this.porciones.get(i).setGms(this.porciones.get(i).getPeso() + porcion.getPeso());
+        } else {
+            this.porciones.add(porcion);
         }
     }
 

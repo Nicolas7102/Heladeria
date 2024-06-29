@@ -4,6 +4,7 @@ import Helados.Cucurucho;
 import Helados.Helado;
 import Helados.UnKilo;
 import Misc.Cobertura;
+import Misc.Compra;
 import Misc.Porcion;
 import Misc.Sabor;
 
@@ -43,6 +44,11 @@ public class Main {
         cucurucho1.agregarPorcion(chocolate50g);
         cucurucho1.agregarPorcion(chocolate50g);
         cucurucho1.agregarPorcion(vainilla50g);
+
+        //Compras
+        Compra compra1 = new Compra();
+        compra1.agregarHelado(cucurucho1);
+        compra1.agregarHelado(kilo1);
 
         //Consola
         System.out.println(listarDatosHelado(kilo1));
