@@ -1,7 +1,5 @@
 package Compras;
 
-import Helados.Helado;
-
 public class Oferta {
     private int porcentajeDescuento;
     private int diaDescuento; // 0=Todos los dias, 1=Lunes, 7=Domingo
@@ -11,8 +9,6 @@ public class Oferta {
     //Tipos de oferta:
     // 1. Si la compra pesa mas de x kg
     // 2. Si la compra tiene mas de x tipo de helados.
-    // 3. Ofertas en productos sellados. Cajas de bombones, etc. //TODO Agregar Bombones en Helados
-    // 4. Demas tipos de ofertas no me quiero complicar. Si tuviera que haber haria una clase hija para cada tipo de oferta.
 
     /**
      * @param diaDescuento 0=Todos los dias, 1=Domingo, 7=Sabado

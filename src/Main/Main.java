@@ -12,18 +12,26 @@ import Ingredientes.Sabor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Calendar;
-
-//TODO Hacer un segundo main donde haga un menu interactuable desde la consola. Este dejarlo como está.
 
 public class Main {
     public static void main(String[] args) {
+        // Notas finales
+        // No hice una clase pote porque queria tener las medidas ya predefinidas
+        // Las ofertas hay que almacenarlas manualmente en el main
+        // Tipos de helado: Pote, Cucurucho.
+        // Hice las ofertasAlmacenadas singleton porque no las podia almacenar en clases que se instancian mas de una vez, y quiero que las ofertas se guarden en un arraylist global sin usar el main
+        // tipoHelado --> Este atributo es para clasificar los helados para las ofertas. Las ofertas son exclusivas dependiendo el tipo de helado.
+
+        //=========================================================================//
+
         //Sabores
         Sabor vainilla = new Sabor("Vainilla", false, 1000);
         Sabor chocolate = new Sabor("Chocolate", false, 2000);
+        Sabor naranja = new Sabor("Naranja light", true, 1800);
 
         //Coberturas
         Cobertura salsaChocolate = new Cobertura("Salsa de Chocolate", false, 200);
+        Cobertura frutillas = new Cobertura("Frutillas", true, 250);
 
         //Porciones
         Porcion chocolate100g = new Porcion(chocolate, 100);
@@ -50,12 +58,11 @@ public class Main {
         cucurucho2.agregarPorcion(chocolate100g);
         cucurucho2.agregarPorcion(chocolate50g);
 
-
         //Ofertas
-        OfertasAlmacenadas ofertasAlmacenadas = OfertasAlmacenadas.getInstancia();
         Oferta oferta3kg20porciento = new Oferta(10, 2, 2500, new UnKilo().getTipoHelado());
         Oferta ofertaCucurucho2Unidades10porciento = new Oferta(5, 2, 2, new Cucurucho().getTipoHelado());
 
+        OfertasAlmacenadas ofertasAlmacenadas = OfertasAlmacenadas.getInstancia();
         ofertasAlmacenadas.almacenarOferta(oferta3kg20porciento);
         ofertasAlmacenadas.almacenarOferta(ofertaCucurucho2Unidades10porciento);
 

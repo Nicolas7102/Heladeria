@@ -1,16 +1,11 @@
 package Compras;
 
 import Helados.Helado;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 
 public class Compra {
     private ArrayList<Helado> helados;
-    //private float precioFinal; TODO Revisar que si calculo el precio este valor cambia, se puede llegar a acumular y retornar cualquier valor. Borrar supongo.
-    //private HashSet<Oferta> ofertas;
 
     public Compra(){
         this.helados = new ArrayList<Helado>();
@@ -21,7 +16,7 @@ public class Compra {
         this.helados.add(helado);
     }
 
-    public void quitarHelado(Helado helado){ //TODO PROBAR SI ANDA
+    public void quitarHelado(Helado helado){
         this.helados.remove(helado);
     }
 
@@ -49,7 +44,6 @@ public class Compra {
         System.out.print("Precio base: $" + precioAux);
 
         for (int i = 0; i < ofertasAlmacenadasInstancia().size(); i++) {
-             // TODO Hacer excepcion por si no esta instanciada
                 desc = validarOferta();
             }
 
@@ -60,12 +54,11 @@ public class Compra {
     }
 
     /**
-     * Si una oferta es de tipo "2KG 10% de descuento" este metodo verifica que los dos kilos sean acumulados en helados de tipo "Pote". Y si es por cantidad de un tipo de helado o verifica.
-     * @return Devuelve el descuento en pesos
+     * Si una oferta es de tipo "2KG 10% de descuento" este metodo verifica que los dos kilos sean acumulados en helados de tipo "Pote". Y si es por la cantidad de un tipo de helado lo verifica.
+     * @return Devuelve el porcentaje de descuento
      */
-    // Si la oferta es de tipo Pote = Descuento al alcanzar x cantidad de gramos.
+    // Si la oferta es de tipo Pote = Descuento al alcanzar x cantidad de gramos en los potes
     // Si es de tipo Cucurucho = Descuento al alcanzar x cantidad de cucuruchos
-    // Si es de tipo Empaquetado = Descuento al alcanzar x cantidad de unidades
     private float validarOferta(){
         Calendar cal = Calendar.getInstance();
         int hoy = cal.get(Calendar.DAY_OF_WEEK);
@@ -77,7 +70,6 @@ public class Compra {
         if (!ofertasInstancia.isEmpty()){
             int pesoPotes = 0;
             int qtyCucurucho = 0;
-            int qtyEmpaquetado = 0;
             // Agregar los que hagan falta en el futuro
 
             // Contar los tipos de helados que hay en la compra
@@ -86,8 +78,6 @@ public class Compra {
                     pesoPotes += this.helados.get(i).calcularPeso();
                 } else if (this.helados.get(i).getTipoHelado().equals("Cucurucho")){
                     qtyCucurucho += 1;
-                } else if(this.helados.get(i).getTipoHelado().equals("Empaquetado")){
-                    qtyEmpaquetado += 1;
                 }
             }
 
@@ -95,14 +85,10 @@ public class Compra {
                 if (ofertasAlmacenadasInstancia().get(i).getDiaDescuento() == 0 || ofertasAlmacenadasInstancia().get(i).getDiaDescuento() == hoy) {
                     if (ofertasInstancia.get(i).getTipoHelado().equals("Pote")) {
                         if (pesoPotes >= ofertasInstancia.get(i).getCantidad()) {
-                            descuento += ofertasInstancia.get(i).getPorcentajeDescuento(); // TODO Probar si anda
+                            descuento += ofertasInstancia.get(i).getPorcentajeDescuento();
                         }
                     } else if (ofertasInstancia.get(i).getTipoHelado().equals("Cucurucho")) {
                         if (qtyCucurucho >= ofertasInstancia.get(i).getCantidad()) {
-                            descuento += ofertasInstancia.get(i).getPorcentajeDescuento();
-                        }
-                    } else if (ofertasInstancia.get(i).getTipoHelado().equals("Empaquetado")) {
-                        if (qtyEmpaquetado >= ofertasInstancia.get(i).getCantidad()) {
                             descuento += ofertasInstancia.get(i).getPorcentajeDescuento();
                         }
                     }
@@ -111,6 +97,4 @@ public class Compra {
         }
         return descuento;
     }
-
-    //TODO Anotar en algun lado todos los tipos de helado. Empaquetado= Cajas o potes sellados. Agua= Palitos. Pote= 1/4, 1/2, 1kg. etc.
 }

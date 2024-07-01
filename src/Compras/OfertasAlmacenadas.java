@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class OfertasAlmacenadas {
-    //Si esta bien hecho -> Lo hice singleton porque no podia almacenar las ofertas en clases que se instancian mas de una vez, y quiero que las ofertas se guarden automaticamente en un arraylist.
     private static OfertasAlmacenadas instancia;
     private HashSet<Oferta> ofertas;
 
@@ -31,6 +30,6 @@ public class OfertasAlmacenadas {
     }
 
     public void eliminarOferta(Oferta oferta) {
-        this.ofertas.remove(oferta); //TODO Agregar excepcion por si no existe?. Supuestamente no
+        this.ofertas.remove(oferta);
     }
 }

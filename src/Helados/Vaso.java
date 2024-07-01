@@ -1,48 +1,43 @@
 package Helados;
 
-import Compras.Oferta;
 import Ingredientes.Cobertura;
 import Ingredientes.Porcion;
 import Ingredientes.Sabor;
 
 import java.util.ArrayList;
 
-public class UnKilo extends Helado{
-    public UnKilo(){
+public class Vaso extends Helado{
+    public Vaso(){
         this.porciones = new ArrayList<Porcion>();
         this.coberturas = new ArrayList<Cobertura>();
-        this.coberturasMax = 4; // COBERTURAS NO SUMAN AL PESO
-        this.pesoMaximo = 1000;
-        this.tipoHelado = "Pote";
+        this.coberturasMax = 1;
+        this.pesoMaximo = 100;
+        this.tipoHelado = "Cucurucho";
     }
 
     @Override
     public void agregarPorcion(Porcion porcion) {
-        if(porcion.getPeso() > pesoMaximo || porcion.getPeso() < 0){
+        if (porcion.getPeso() > pesoMaximo || porcion.getPeso() < 0) {
             System.out.println("Peso del sabor fuera de rango");
-        }
-        else if(this.calcularPeso() > pesoMaximo){
-            System.out.println("Ya se completó el pote");
-        }
-        else if(this.contieneSabor(porcion)){
+        } else if (this.calcularPeso() > pesoMaximo) {
+            System.out.println("Ya se completó el vaso");
+        } else if (this.contieneSabor(porcion)) {
             int i = indexBySabor(porcion);
             this.porciones.get(i).setGms(this.porciones.get(i).getPeso() + porcion.getPeso());
-        }
-        else{
+        } else {
             this.porciones.add(porcion);
         }
     }
 
     @Override
-    public int indexBySabor(Porcion porcion){
-        int ind = 0;
+    public int indexBySabor(Porcion porcion) {
+        int ind;
         int j = 0;
-        while (true){
-            if (this.porciones.get(j).getSabor() == porcion.getSabor()){
+        while (true) {
+            if (this.porciones.get(j).getSabor() == porcion.getSabor()) {
                 ind = j;
                 break;
-            }
-            else{
+            } else {
                 j++;
             }
         }
@@ -74,15 +69,10 @@ public class UnKilo extends Helado{
     }
 
     @Override
-    public String getTipoHelado() {
-        return this.tipoHelado;
-    }
-
-    @Override
     public int calcularPrecio() {
         int precio = 0;
-        if (this.calcularPeso() < 100){
-            System.out.print("Se debe llenar mas el pote - ");
+        if (this.calcularPeso() < 70){
+            System.out.print("Se debe llenar mas el vaso - ");
         }
         else{
             for (int i=0; i<this.porciones.size(); i++){
@@ -134,5 +124,10 @@ public class UnKilo extends Helado{
     @Override
     public ArrayList<Porcion> getPorciones() {
         return this.porciones;
+    }
+
+    @Override
+    public String getTipoHelado(){
+        return this.tipoHelado;
     }
 }

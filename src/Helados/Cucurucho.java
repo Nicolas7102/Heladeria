@@ -32,15 +32,14 @@ public class Cucurucho extends Helado{
     }
 
     @Override
-    public int indexBySabor(Porcion porcion){
-        int ind = 0;
+    public int indexBySabor(Porcion porcion) {
+        int ind;
         int j = 0;
-        while (true){
-            if (this.porciones.get(j).getSabor() == porcion.getSabor()){
+        while (true) {
+            if (this.porciones.get(j).getSabor() == porcion.getSabor()) {
                 ind = j;
                 break;
-            }
-            else{
+            } else {
                 j++;
             }
         }
@@ -133,5 +132,4 @@ public class Cucurucho extends Helado{
     public String getTipoHelado(){
         return this.tipoHelado;
     }
-
 }

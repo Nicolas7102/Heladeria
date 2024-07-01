@@ -1,18 +1,17 @@
 package Helados;
 
-import Compras.Oferta;
 import Ingredientes.Cobertura;
 import Ingredientes.Porcion;
 import Ingredientes.Sabor;
 
 import java.util.ArrayList;
 
-public class UnKilo extends Helado{
-    public UnKilo(){
+public class MedioKilo extends Helado{
+     public MedioKilo(){
         this.porciones = new ArrayList<Porcion>();
         this.coberturas = new ArrayList<Cobertura>();
-        this.coberturasMax = 4; // COBERTURAS NO SUMAN AL PESO
-        this.pesoMaximo = 1000;
+        this.coberturasMax = 3; // COBERTURAS NO SUMAN AL PESO
+        this.pesoMaximo = 500;
         this.tipoHelado = "Pote";
     }
 
@@ -81,7 +80,7 @@ public class UnKilo extends Helado{
     @Override
     public int calcularPrecio() {
         int precio = 0;
-        if (this.calcularPeso() < 100){
+        if (this.calcularPeso() < 400){
             System.out.print("Se debe llenar mas el pote - ");
         }
         else{
