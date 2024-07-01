@@ -1,10 +1,12 @@
 package Helados;
 
-import Misc.Cobertura;
-import Misc.Porcion;
-import Misc.Sabor;
+import Compras.Oferta;
+import Ingredientes.Cobertura;
+import Ingredientes.Porcion;
+import Ingredientes.Sabor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class UnKilo extends Helado{
     public UnKilo(){
@@ -12,6 +14,7 @@ public class UnKilo extends Helado{
         this.coberturas = new ArrayList<Cobertura>();
         this.coberturasMax = 4; // COBERTURAS NO SUMAN AL PESO
         this.pesoMaximo = 1000;
+        this.tipoHelado = "Pote";
     }
 
     @Override
@@ -72,6 +75,11 @@ public class UnKilo extends Helado{
     }
 
     @Override
+    public String getTipoHelado() {
+        return this.tipoHelado;
+    }
+
+    @Override
     public int calcularPrecio() {
         int precio = 0;
         if (this.calcularPeso() < 100){
@@ -128,5 +136,4 @@ public class UnKilo extends Helado{
     public ArrayList<Porcion> getPorciones() {
         return this.porciones;
     }
-
 }

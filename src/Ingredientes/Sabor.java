@@ -1,12 +1,15 @@
-package Misc;
+package Ingredientes;
 
-public class Cobertura {
-    private String cobertura;
+public class Sabor {
+    private String sabor;
     private boolean esLight;
-    private int precio;
+    private int precio; //PRECIO POR KILO
 
-    public Cobertura(String cobertura, boolean esLight, int precio){
-        this.cobertura = cobertura;
+    /**
+     * @param precio Precio por kilo
+     */
+    public Sabor(String sabor, boolean esLight, int precio){
+        this.sabor = sabor;
         this.esLight = esLight;
         this.precio = precio;
     }
@@ -19,11 +22,13 @@ public class Cobertura {
         return this.precio;
     }
 
-    public String getCobertura(){
-        return this.cobertura;
+    public String getSabor(){
+        return this.sabor;
     }
 
     public boolean esLight(){
         return this.esLight;
     }
+
+
 }

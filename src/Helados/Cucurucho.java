@@ -1,10 +1,12 @@
 package Helados;
 
-import Misc.Cobertura;
-import Misc.Porcion;
-import Misc.Sabor;
+import Compras.Oferta;
+import Ingredientes.Cobertura;
+import Ingredientes.Porcion;
+import Ingredientes.Sabor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Cucurucho extends Helado{
     public Cucurucho(){
@@ -12,6 +14,7 @@ public class Cucurucho extends Helado{
         this.coberturas = new ArrayList<Cobertura>();
         this.coberturasMax = 1;
         this.pesoMaximo = 150;
+        this.tipoHelado = "Cucurucho";
     }
 
     @Override
@@ -125,4 +128,10 @@ public class Cucurucho extends Helado{
     public ArrayList<Porcion> getPorciones() {
         return this.porciones;
     }
+
+    @Override
+    public String getTipoHelado(){
+        return this.tipoHelado;
+    }
+
 }

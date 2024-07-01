@@ -1,4 +1,4 @@
-package Misc;
+package Ingredientes;
 
 public class Porcion {
     private Sabor sabor;

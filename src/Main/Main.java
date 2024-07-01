@@ -1,15 +1,20 @@
 package Main;
 
+import Compras.Oferta;
+import Compras.OfertasAlmacenadas;
 import Helados.Cucurucho;
 import Helados.Helado;
 import Helados.UnKilo;
-import Misc.Cobertura;
-import Misc.Compra;
-import Misc.Porcion;
-import Misc.Sabor;
+import Ingredientes.Cobertura;
+import Compras.Compra;
+import Ingredientes.Porcion;
+import Ingredientes.Sabor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Calendar;
+
+//TODO Hacer un segundo main donde haga un menu interactuable desde la consola. Este dejarlo como está.
 
 public class Main {
     public static void main(String[] args) {
@@ -27,41 +32,56 @@ public class Main {
         Porcion vainilla50g = new Porcion(vainilla, 50);
         Porcion vainilla100g = new Porcion(vainilla, 100);
         Porcion vainilla500g = new Porcion(vainilla, 500);
+        Porcion chocolate1k = new Porcion(chocolate, 1000);
 
         //Helados
         UnKilo kilo1 = new UnKilo();
-        //kilo1.agregarPorcion(vainilla500g);
-        //kilo1.agregarPorcion(vainilla500g);
-        //kilo1.agregarSabor(chocolate, 500);
-        kilo1.agregarPorcion(vainilla50g);
-        kilo1.agregarPorcion(chocolate50g);
-        kilo1.agregarPorcion(chocolate100g);
-
-        kilo1.agregarCobertura(salsaChocolate);
+        UnKilo kilo2 = new UnKilo();
+        UnKilo kilo3 = new UnKilo();
+        kilo1.agregarPorcion(chocolate1k);
+        kilo2.agregarPorcion(chocolate1k);
+        kilo3.agregarPorcion(chocolate1k);
 
         Cucurucho cucurucho1 = new Cucurucho();
-        //cucurucho1.agregarPorcion(chocolate100g);
+        Cucurucho cucurucho2 = new Cucurucho();
         cucurucho1.agregarPorcion(chocolate50g);
         cucurucho1.agregarPorcion(chocolate50g);
         cucurucho1.agregarPorcion(vainilla50g);
+        cucurucho2.agregarPorcion(chocolate100g);
+        cucurucho2.agregarPorcion(chocolate50g);
+
+
+        //Ofertas
+        OfertasAlmacenadas ofertasAlmacenadas = OfertasAlmacenadas.getInstancia();
+        Oferta oferta3kg20porciento = new Oferta(10, 2, 2500, new UnKilo().getTipoHelado());
+        Oferta ofertaCucurucho2Unidades10porciento = new Oferta(5, 2, 2, new Cucurucho().getTipoHelado());
+
+        ofertasAlmacenadas.almacenarOferta(oferta3kg20porciento);
+        ofertasAlmacenadas.almacenarOferta(ofertaCucurucho2Unidades10porciento);
 
         //Compras
         Compra compra1 = new Compra();
-        compra1.agregarHelado(cucurucho1);
         compra1.agregarHelado(kilo1);
+        compra1.agregarHelado(kilo1);
+        compra1.agregarHelado(kilo1);
+        compra1.agregarHelado(cucurucho1);
+        compra1.agregarHelado(cucurucho2);
+
+        Compra compra2 = new Compra();
+        compra2.agregarHelado(kilo1);
+
+        System.out.printf("Compra 1: %.2f\n", compra1.calcularPrecio());
 
         //Consola
-        System.out.println(listarDatosHelado(kilo1));
-        System.out.println("> Peso: " + kilo1.calcularPeso() + "gms");
-        System.out.println("Total: $" + kilo1.calcularPrecio());
-
-        System.out.println();
-
-        System.out.println(listarDatosHelado(cucurucho1));
-        System.out.println("> Peso: " + cucurucho1.calcularPeso() + "gms");
-        System.out.println("Total: $" + cucurucho1.calcularPrecio());
-
-        GUI();
+//        System.out.println(listarDatosHelado(kilo1));
+//        System.out.println("> Peso: " + kilo1.calcularPeso() + "gms");
+//        System.out.println("Total: $" + kilo1.calcularPrecio());
+//
+//        System.out.println();
+//
+//        System.out.println(listarDatosHelado(cucurucho1));
+//        System.out.println("> Peso: " + cucurucho1.calcularPeso() + "gms");
+//        System.out.println("Total: $" + cucurucho1.calcularPrecio());
     }
 
     public static String listarDatosHelado(Helado helado){
